@@ -145,7 +145,7 @@ vim.lsp.config['nixd'] = {
     settings = {
         ['nixd'] = {
             formatting = {
-                command = { "nix fmt" } -- NOTE: this uses formatter set in flake
+                command = { "nixfmt" }
             }
         }
     }
