@@ -12,7 +12,7 @@
       home.file.".config/nvim" = {
         source = builtins.filterSource
           (path: type:
-            !(builtins.elem (baseNameOf path) [ "flake.nix" "flake.lock" "readme.md" ]))
+            !(builtins.elem (baseNameOf path) [ "flake.nix" "flake.lock" ".gitignore" "README.md" ]))
           self;
         recursive = true;
       };
