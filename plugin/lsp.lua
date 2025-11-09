@@ -152,6 +152,47 @@ vim.lsp.config['nixd'] = {
 }
 
 
+-- Python LSP (pyright)
+vim.lsp.config['pyright'] = {
+    cmd = { 'pyright-langserver', '--stdio' },
+    filetypes = { 'python' },
+    root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
+    capabilities = caps,
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "basic", -- "off", "basic", or "strict"
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace"
+            }
+        }
+    }
+}
+
+-- Rust LSP (rust-analyzer)
+vim.lsp.config['rust_analyzer'] = {
+    cmd = { 'rust-analyzer' },
+    filetypes = { 'rust' },
+    root_markers = { 'Cargo.toml', '.git' },
+    capabilities = caps,
+    settings = {
+        ['rust-analyzer'] = {
+            cargo = { allFeatures = true },
+            checkOnSave = {
+                command = "clippy"
+            },
+            diagnostics = {
+                enable = true,
+                disabled = { "unresolved-proc-macro" },
+                enableExperimental = true,
+            }
+        }
+    }
+}
+
+vim.lsp.enable('pyright')
+vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('luals')
 vim.lsp.enable('cssls')
 vim.lsp.enable('ts_ls')
