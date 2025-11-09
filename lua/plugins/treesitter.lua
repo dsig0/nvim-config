@@ -51,7 +51,7 @@ return {
                     "astro",
                 },
                 -- auto install above language parsers
-                auto_install = false,
+                auto_install = true,
             })
         end
     }
