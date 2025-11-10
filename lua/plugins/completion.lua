@@ -65,16 +65,10 @@ return {
     appearance = {
       nerd_font_variant = "normal",
     },
-    sources = {
-      default = { "lsp", "path", "buffer", "lazydev", "snippets" },
-      providers = {
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-          score_offset = 100, -- Show before LSP because it's better
-        },
-      },
-    },
+
+sources = {
+  default = { "lsp", "path", "buffer", "snippets" },
+},
     completion = {
       menu = { border = "rounded", scrollbar = false },
       ghost_text = {
