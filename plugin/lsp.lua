@@ -76,7 +76,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- 5) Define the Lua language server config (no mason/lspconfig)
 -- See :help lsp-new-config and :help vim.lsp.config()
-local caps = require("cmp_nvim_lsp").default_capabilities()
+
+
+local caps = vim.lsp.protocol.make_client_capabilities()
+
+local ok, blink = pcall(require, "blink.cmp")
+if ok then
+  caps = vim.tbl_deep_extend("force", caps, blink.get_lsp_capabilities({}, false))
+end
+
+caps = vim.tbl_deep_extend("force", caps, {
+  textDocument = {
+    foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    },
+  },
+})
+
 vim.lsp.config['luals'] = {
     cmd = { 'lua-language-server' },
     filetypes = { 'lua' },
